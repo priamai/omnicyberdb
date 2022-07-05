@@ -1,0 +1,14 @@
+define
+
+version sub attribute, value string;
+base_score sub attribute, value double;
+temporal_score sub attribute, value double;
+environmental_score sub attribute, value double;
+
+cvss_score sub entity,
+    owns version,
+    owns base_score,
+    owns temporal_score,
+    owns environmental_score;
+    
+    

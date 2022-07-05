@@ -1,0 +1,25 @@
+define
+#====================
+# Source: https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord#
+# A unique, alphanumeric identifier assigned by the CVE Program. 
+# Each identifier references a specific vulnerability. 
+# A CVE ID enables automation and multiple parties to discuss, share, and correlate information about a specific vulnerability, knowing they are referring to the same thing.
+
+# ====================
+
+cve_id sub attribute, value string;
+
+cve_record sub entity,
+    owns cve_id,
+    owns cve_state;
+
+cve_state sub attribute, value string;
+
+# CVE numbering authority
+cve_cna sub entity;
+
+cve_board sub entity;
+
+cve_feed sub entity;
+
+

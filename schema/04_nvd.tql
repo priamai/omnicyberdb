@@ -1,0 +1,14 @@
+define
+
+
+description sub attribute, value string;
+assigned-at sub attribute, value datetime;
+
+nvd_vulnerability sub entity,
+    owns cve_id,
+    owns description,
+    plays has_cvss:vulnerability;
+    
+has_cvss sub relation,
+    relates vulnerability,
+    owns assigned-at; 
