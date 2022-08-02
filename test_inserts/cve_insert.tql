@@ -1,0 +1,10 @@
+
+insert $c isa cve_record,
+has name "CVE-1",
+has status "Candidate",
+has description "TEST \"ESCAPED\"",
+has references "123",
+has phase "Modified (19991203)",
+has votes "Vote 1 Vote 2  ";
+
+

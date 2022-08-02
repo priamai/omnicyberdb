@@ -7,19 +7,31 @@ define
 
 # ====================
 
-cve_id sub attribute, value string;
+cve2 sub entity,
+    owns name,
+    owns status,
+    owns description,
+    plays has_list:cve,
+    owns phase,
+    owns votes,
+    owns comments;
 
-cve_record sub entity,
-    owns cve_id,
-    owns cve_state;
+# a relation operator in a team
+# should use nouns 
+has_list sub relation,
+    relates cve,
+    relates reference;
+    
+reference sub entity,
+    plays has_list:reference,
+    owns content;
+    
+name sub attribute, value string;
+status sub attribute, value string;
+description sub attribute, value string;
+content sub attribute, value string;
+phase sub attribute, value string;
 
-cve_state sub attribute, value string;
 
-# CVE numbering authority
-cve_cna sub entity;
-
-cve_board sub entity;
-
-cve_feed sub entity;
 
 
