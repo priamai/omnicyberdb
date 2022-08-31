@@ -1,0 +1,9 @@
+define
+
+metric sub entity,
+    owns unit,
+    owns data;
+    
+data sub attribute, value long;
+unit sub attribute, value string;
+

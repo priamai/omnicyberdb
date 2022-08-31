@@ -6,34 +6,52 @@ define
 # A CVE ID enables automation and multiple parties to discuss, share, and correlate information about a specific vulnerability, knowing they are referring to the same thing.
 
 # ====================
-
+    
 # https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord#
-cve_record_4 sub entity,
-    owns data_version,
+cve_record_4 sub cyber,
     owns assigner,
     owns date_public,
     owns id,
     owns state,
     owns title,
-    owns description,
-    owns problem_type,
+    plays has_descriptions:cve,
+    plays has_problems:cve,
     plays has_references:cve;
 
+cve_problemtype sub entity,
+    owns lang,
+    owns data;
+    
 cve_reference sub entity,
-    plays has_references:reference,
     owns name,
     owns resource,
     owns url;
+
+cve_description sub entity,
+    plays has_descriptions:description,
+    owns lang,
+    owns data;
+    
+has_problems sub relation,
+    relates cve,
+    relates problemtype;
+    
+has_descriptions sub relation,
+    relates cve,
+    relates description;
     
 has_references sub relation,
-    relates cve_record,
-    relates cve_reference;
+    relates cve,
+    relates reference;
     
-      
 name sub attribute, value string;
 resource sub attribute, value string;
 url sub attribute, value string;
-
-
-
+id sub attribute, value string;
+state sub attribute, value string;
+lang sub attribute, value string;
+data sub attribute, value string;
+title sub attribute, value string;
+assigner sub attribute, value string;
+date_public sub attribute, value datetime;
 

@@ -1,0 +1,19 @@
+version: 1.0
+type: protobuf
+message:
+  hostname:
+    entity: "device"
+    attribute: "hostname"
+  cve:
+    entity: "cve_record_4"
+    attribute: "id"
+  count:
+    entity: "metric"
+    attribute : "data"
+relations:
+  has_source:
+    roles:
+      source: "device"
+      cve: "cve_record4"
+    properties:
+      action: "detect"
