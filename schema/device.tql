@@ -1,0 +1,16 @@
+define
+
+device sub entity,
+    owns uuid,
+    owns mac,
+    owns ipv4,
+    owns ipv6,
+    owns hostname;
+    
+uuid sub attribute, value string;
+mac sub attribute, value string;
+ipv4 sub attribute, value string;
+ipv6 sub attribute, value string;
+domain sub attribute, value string;
+hostname sub attribute, value string;
+    
