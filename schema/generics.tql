@@ -2,3 +2,4 @@ define
 
 cyber sub entity, abstract;
 
+timestamp sub attribute, value datetime;

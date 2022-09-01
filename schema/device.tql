@@ -1,3 +1,6 @@
+# version=1.0
+# namespace=base
+
 define
 
 device sub entity,

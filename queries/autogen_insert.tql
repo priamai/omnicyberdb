@@ -1,1 +1,8 @@
-insert $d isa device, has hostname "laptop-78"; $c isa cve_record_4, has id "CVE-2022-24521"; $m isa metric, has data "44"; 
+
+insert $s isa sensor, has hostname "web-66"; 
+$v isa vuln, has id "CVE-2022-24521";
+$v3 isa volume, has data 12; 
+$h (cve: $v, metric: $v3, device: $s) isa has_detected, 
+has timestamp 2018-09-16T22:24:19;
+
+

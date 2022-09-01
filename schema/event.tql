@@ -1,18 +1,22 @@
 define 
 
 # The attributes that specify when the event occurred, duration, and aggregations
-occurrence sub entity,
+range_event sub entity,
     owns duration_msec,
     owns start_time,
     owns end_time,
+    owns timezone;
+
+point_event sub entity,
+    owns time,
     owns timezone;
 
 duration_msec sub attribute, value long;
 start_time sub attribute, value datetime;
 end_time sub attribute, value datetime;
 timezone sub attribute, value string;
+time sub attribute, value datetime;
 
-protobuf sub entity;
 
 
     

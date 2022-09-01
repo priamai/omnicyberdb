@@ -1,19 +1,20 @@
 version: 1.0
 type: protobuf
-message:
+entities:
   hostname:
-    entity: "device"
+    entity: "sensor"
     attribute: "hostname"
   cve:
-    entity: "cve_record_4"
+    entity: "vuln"
     attribute: "id"
   count:
-    entity: "metric"
+    entity: "volume"
     attribute : "data"
 relations:
-  has_source:
+  timestamp:
+    relation: "has_detected"
+    attribute: "timestamp"
     roles:
-      source: "device"
-      cve: "cve_record4"
-    properties:
-      action: "detect"
+      vuln: "cve"
+      volume: "metric"
+      sensor: "device"

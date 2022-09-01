@@ -1,3 +1,4 @@
 Faker
 Faker-events
-yaml
+pyyaml
+typedb-query-builder

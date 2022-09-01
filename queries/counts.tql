@@ -1,2 +1,2 @@
-match $c isa cve_record_4;
-get $c;
+match $v isa vuln;
+get $v;

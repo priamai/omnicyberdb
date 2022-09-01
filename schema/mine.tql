@@ -1,0 +1,22 @@
+# version=1.0
+# namespace=mycompany
+
+define
+
+vuln sub cve_record_4,
+    plays has_detected:cve;
+    
+sensor sub device,
+    plays has_detected:device;
+    
+volume sub metric,
+    plays has_detected:metric;
+    
+has_detected sub relation,
+    owns timestamp,
+    relates cve,
+    relates metric,
+    relates device;
+    
+
+    

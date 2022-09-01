@@ -1,0 +1,9 @@
+base:
+  - generics.tql
+  - device.tql
+  - event.tql
+  - metrics.tql
+  - mitre_cve.tql
+extensions:
+  - mine.tql
+
