@@ -80,6 +80,24 @@ class MessageGenerator:
                     self._schema[entity_type] = entity_prop
                 logger.info(f"Loaded {len(self._schema)} entities from config mappings")
 
+                relations = set()
+                for field in self._mapping['relations']:
+                    atom = self._mapping['relations'][field]
+                    relations.add(atom['relation'])
+
+                for relation_type in relations:
+                    entity_prop  = {}
+                    for value_type in ['string','long','boolean','datetime']:
+                        q_att = f'match $s type {relation_type}, owns $a;\
+                        $a sub attribute, value {value_type};\
+                        get $s,$a;'
+
+                        for a in tx.query().match(q_att):
+                            attr= a.map().get("a").get_label()
+                            entity_prop[str(attr)]=value_type
+
+                    self._schema[relation_type] = entity_prop
+
     def check_var(self,name:str,var_list:list):
         if name not in var_list:
             return name
@@ -123,10 +141,17 @@ class MessageGenerator:
                     for role in atom['roles']:
                         # need to find the original variable ...
                         insert_rel.relates(atom['roles'][role], queries[role])
+                    # load schema properties
+                    relation_types = self._schema[atom['relation']]
 
-                    #TODO: needs a fix in the building library sadly .... for now workaround
-                    tstamp = message.get_field(field).replace(microsecond=0).isoformat()
-                    insert_rel.has(atom['attribute'], tstamp,"long")
+                    prop_type = relation_types[atom['attribute']]
+                    if prop_type == 'datetime':
+                        #TODO: needs a fix in the building library sadly .... for now workaround
+                        tstamp = message.get_field(field).replace(microsecond=0).isoformat()
+                        insert_rel.has(atom['attribute'], tstamp,"long")
+                    else:
+                        insert_rel.has(atom['attribute'], tstamp, prop_type)
+
                     vars.append(var_name)
                     queries[atom['relation']] = insert_rel
 

@@ -86,3 +86,4 @@ if __name__ == "__main__":
                 past = now
                 time.sleep(1)
 
+            logger.info(f'Done simulation loop {totals}')
