@@ -1,2 +1,2 @@
-match $v isa vuln;
-get $v;
+match $v isa vuln, has attribute $y;
+get $v,$y;

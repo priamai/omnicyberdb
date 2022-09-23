@@ -9,6 +9,7 @@ import pprint
 from loader import MessageGenerator
 from pathlib import Path
 import logging
+import argparse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,9 +33,7 @@ class ProtoBuf:
     def __str__(self):
         return str(self._attributes)
 
-DB_URL = "typedb.westeurope.cloudapp.azure.com:1729"
-DB_NAME = "omnibuscyber"
-import argparse
+import db
 
 if __name__ == "__main__":
 
@@ -49,7 +48,7 @@ if __name__ == "__main__":
     with open("config.yaml", 'r') as stream:
         config_data = yaml.safe_load(stream)
         folder = Path(__file__).parent.parent.joinpath('schema')
-        mg = MessageGenerator(uri=DB_URL,database=DB_NAME,schema_folder=folder,reset=args.reset)
+        mg = MessageGenerator(uri=db.DB_URL,database=db.DB_NAME,schema_folder=folder,reset=args.reset)
         mg.set_mapping(config_data)
 
     if args.eps > 0:

@@ -1,6 +1,7 @@
 define
 #====================
 # Source: https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord#
+# Schema: https://github.com/CVEProject/cve-schema/blob/master/schema/v4.0/CVE_JSON_4.0_min_public.schema
 # A unique, alphanumeric identifier assigned by the CVE Program. 
 # Each identifier references a specific vulnerability. 
 # A CVE ID enables automation and multiple parties to discuss, share, and correlate information about a specific vulnerability, knowing they are referring to the same thing.
@@ -20,7 +21,8 @@ cve_record_4 sub cyber,
 
 cve_problemtype sub entity,
     owns lang,
-    owns data;
+    owns val,
+    plays has_problems:problemtype;
     
 cve_reference sub entity,
     owns name,
@@ -30,7 +32,7 @@ cve_reference sub entity,
 cve_description sub entity,
     plays has_descriptions:description,
     owns lang,
-    owns data;
+    owns val;
     
 has_problems sub relation,
     relates cve,
@@ -50,7 +52,7 @@ url sub attribute, value string;
 id sub attribute, value string;
 state sub attribute, value string;
 lang sub attribute, value string;
-data sub attribute, value string;
+val sub attribute, value string;
 title sub attribute, value string;
 assigner sub attribute, value string;
 date_public sub attribute, value datetime;

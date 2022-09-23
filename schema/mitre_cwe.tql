@@ -1,0 +1,42 @@
+define
+
+# https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord#
+cwe sub cyber,
+    owns cwe_id,
+    owns abstraction,
+    owns structure,
+    owns description,
+    owns extended_description,
+    plays family_rel:child,
+    plays family_rel:parent,
+    plays can_follow:prev,
+    plays member_of:child;
+    
+cwe_category sub cyber,
+    owns cwe_id,
+    plays member_of:parent,
+    plays member_of:child;
+     
+cwe_view sub cyber,
+    owns cwe_id,
+    owns objective,
+    plays member_of:parent;
+    
+member_of sub relation,
+    relates child,
+    relates parent;
+  
+family_rel sub relation,
+    relates child,
+    relates parent;
+    
+can_follow sub relation,
+    relates prev;
+    
+cwe_id sub attribute, value long;  
+abstraction sub attribute, value string;
+structure sub attribute, value string;
+description sub attribute, value string;
+objective sub attribute, value string;
+extended_description sub attribute, value string;
+
