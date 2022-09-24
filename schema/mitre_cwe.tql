@@ -3,7 +3,9 @@ define
 # https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord#
 cwe sub cyber,
     owns cwe_id,
+    owns name,
     owns abstraction,
+    owns status,
     owns structure,
     owns description,
     owns extended_description,
@@ -36,6 +38,7 @@ can_follow sub relation,
 cwe_id sub attribute, value long;  
 abstraction sub attribute, value string;
 structure sub attribute, value string;
+status sub attribute, value string;
 description sub attribute, value string;
 objective sub attribute, value string;
 extended_description sub attribute, value string;

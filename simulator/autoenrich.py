@@ -55,18 +55,18 @@ class Enricher:
 
                             found = re.findall("CWE\-(\d+)", value)
                             for cweid in found:
-                                logger.info(cweid)
                                 cwe_info = cwe_src.get_cwe(cweid)
                                 if cwe_info:
-                                    logger.info(cwe_info['Name'])
-                                    logger.info(cwe_info['Weakness Abstraction'])
+                                    tql = cwe_src.tql_versions(cwe_info)
+                                    if tql: queries.append(tql)
                                 else:
                                     logger.warning("CWE not found!")
-        with self._client.session(self._database, SessionType.DATA) as session:
 
+        with self._client.session(self._database, SessionType.DATA) as session:
             for tql in queries:
                 with session.transaction(TransactionType.WRITE) as tx:
                     try:
+                        logger.info(tql)
                         tx.query().insert(tql)
                         tx.commit()
                     except Exception as e:

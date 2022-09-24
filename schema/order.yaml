@@ -4,6 +4,7 @@ base:
   - event.tql
   - metrics.tql
   - mitre_cve.tql
+  - mitre_cwe.tql
 extensions:
   - mine.tql
 

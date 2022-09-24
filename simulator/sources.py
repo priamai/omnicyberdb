@@ -31,6 +31,24 @@ class CweMitreSource():
                 return row
         return None
 
+    def tql_versions(self,info:dict,entity='cwe'):
+        tqb = TypeDBQueryBuilder()
+        if entity == 'cwe':
+            c = tqb.insert_entity(f"cwe", 'c')
+            c.has('name', info['Name'])
+            c.has('cwe_id',int(info['CWE-ID']),'long')
+            c.has('abstraction',info['Weakness Abstraction'])
+            c.has('status', info['Status'])
+            c.has('description', info['Description'])
+
+
+            tqb.compile_query()  # Compile query
+            query = tqb.get_query()  # Get query
+            return query
+
+        else: raise Exception('CWE type not supported yet')
+
+
 class CveMitreSource():
     _url = 'https://www.cve.org/'
     _headers = {"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36",
@@ -75,7 +93,7 @@ class CveMitreSource():
                     problem_i.has("val", problem['description'][0]['value'])
 
                     problems_rel = tqb.insert_relationship('has_problems', f'pbmr{idx}')
-                    problems_rel.relates('cve', c)  # Add related entities
+                    problems_rel.relates('cve', c)
                     problems_rel.relates('problemtype', problem_i)
 
                 tqb.compile_query()  # Compile query

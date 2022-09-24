@@ -54,7 +54,7 @@ if __name__ == "__main__":
     if args.eps > 0:
         with urllib.request.urlopen(cisa_url) as url:
             data = json.loads(url.read().decode())
-            logger.info(f"Total vulnerabilities {data['count']}")
+            logger.info(f"Total CISA vulnerabilities {data['count']}")
 
             # pick a vulnerability from 2022
             vulns = data['vulnerabilities']

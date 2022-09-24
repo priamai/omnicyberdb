@@ -1,2 +1,4 @@
-match $v isa vuln, has attribute $y;
-get $v,$y;
+match $instance isa! $type;
+#$type sub cyber;
+group $type;
+count;
